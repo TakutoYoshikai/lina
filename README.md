@@ -5,15 +5,15 @@ lina is a steganography program. It can hide a binary file or a text file into m
 ### Getting Started
 **install**
 ```bash
-pip3 install -r requirements.txt
+pip install git+https://github.com/TakutoYoshikai/lina.git
 ```
 
 **hide file into multiple png images**
 ```bash
-python3 lina.py hide -d <file> -p <password> -f <from DIR> -t <to DIR>
+lina hide -d <file> -p <password> -f <from DIR> -t <to DIR>
 ```
 
 **reveal file from multiple png images**
 ```bash
-python3 lina.py reveal -p <password> -f <from DIR> -t <to OUTPUT FILE>
+lina reveal -p <password> -f <from DIR> -t <to OUTPUT FILE>
 ```
