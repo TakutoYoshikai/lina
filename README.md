@@ -17,3 +17,6 @@ lina hide -d <file> -p <password> -f <from DIR> -t <to DIR>
 ```bash
 lina reveal -p <password> -f <from DIR> -t <to OUTPUT FILE>
 ```
+
+### LICENSE
+MIT License
