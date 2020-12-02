@@ -10,10 +10,10 @@ pip3 install -r requirements.txt
 
 **hide file into multiple png images**
 ```bash
-python lina.py hide -d <file> -p <password> -f <from DIR> -t <to DIR>
+python3 lina.py hide -d <file> -p <password> -f <from DIR> -t <to DIR>
 ```
 
 **reveal file from multiple png images**
 ```bash
-python lina.py reveal -p <password> -f <from DIR> -t <to OUTPUT FILE>
+python3 lina.py reveal -p <password> -f <from DIR> -t <to OUTPUT FILE>
 ```
