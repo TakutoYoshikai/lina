@@ -76,15 +76,23 @@ def cut_bytes(data):
 def reveal(image):
     width, height = image.size
     binary = ""
+    delimeter = DELIMETER.encode()
+    delimeter = message_to_binary(delimeter)
+    delimeter = "".join(delimeter)
+    buf = ""
     for row in range(height):
         for col in range(width):
             pixel = image.getpixel((col, row))
             if image.mode == "RGBA":
                 pixel = pixel[:3]
             for color in pixel:
+                if len(buf) == len(delimeter):
+                    buf = buf[1:len(delimeter)]
+                buf += str(getbit(color))
                 binary += str(getbit(color))
-    d = cut_bytes(split(binary))
-    return d
+                if buf == delimeter:
+                    return cut_bytes(split(binary))
+    return cut_bytes(split(binary))
                 
 def capacity_of_image(image):
     width, height = image.size
