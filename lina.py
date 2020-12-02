@@ -1,6 +1,7 @@
 from PIL import Image
 import os
 from functools import reduce
+import argparse
 
 DELIMETER = "#|#|#|#"
 
@@ -72,7 +73,7 @@ def cut_bytes(data):
 
 
 
-def reveral(image):
+def reveal(image):
     width, height = image.size
     binary = ""
     for row in range(height):
@@ -172,15 +173,38 @@ def hide_into_album(filepath, password, fr, to):
         image.close()
     f.close()
 
-def reveral_from_album(password, fr, to):
+def reveal_from_album(password, fr, to):
     imagepaths = list_imagepath(fr)
     images = list_images(imagepaths)
     f = open(to, "wb")
     result = bytearray()
     for image in images:
-        result.extend(reveral(image))
+        result.extend(reveal(image))
         image.close()
     result = bytes(result)
     result = decrypt(result, password)
     f.write(result)
 
+def main():
+    parser = argparse.ArgumentParser(description="lina")
+    parser.add_argument("mode", help="hide or reveal")
+    parser.add_argument("-p", "--password")
+    parser.add_argument("-f", "--fr")
+    parser.add_argument("-t", "--to")
+    parser.add_argument("-d", "--file")
+    args = parser.parse_args()
+    if args.mode == "hide":
+        if args.password == None or args.file == None or args.fr == None or args.to == None:
+            parser.print_help()
+            return
+        hide_into_album(args.file, args.password, args.fr, args.to)
+    elif args.mode == "reveal":
+        if args.password == None or args.fr == None or args.to == None:
+            parser.print_help()
+            return
+        reveal_from_album(args.password, args.fr, args.to)
+    else:
+        parser.print_help()
+    
+if __name__ == "__main__":
+    main()
