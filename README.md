@@ -1,5 +1,5 @@
 # lina
-<img src="./lina.png" width="400">
+<img src="./lina.png" width="400" alt="designed by Futa Takahashi">
 lina is a steganography program. It can hide a binary file or a text file into multiple png images.
 
 ### Getting Started
