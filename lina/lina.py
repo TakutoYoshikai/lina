@@ -175,7 +175,7 @@ def hide_into_album(filepath, password, fr, to):
         if len(remain) < capacity:
             size = len(remain)
         encoded = hide(image, remain[:size])
-        encoded.save(to + "/" + image.filename)
+        encoded.save(to + "/" + os.path.basename(image.filename))
         remain = remain[size:]
         image.close()
     f.close()
