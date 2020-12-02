@@ -160,6 +160,7 @@ def decrypt(data, password):
 
 def hide_into_album(filepath, password, fr, to):
     imagepaths = list_imagepath(fr)
+    imagepaths.sort(reverse=True)
     images = list_images(imagepaths)
     f = open(filepath, "rb")
     data = f.read()
@@ -182,6 +183,7 @@ def hide_into_album(filepath, password, fr, to):
 
 def reveal_from_album(password, fr, to):
     imagepaths = list_imagepath(fr)
+    imagepaths.sort(reverse=True)
     images = list_images(imagepaths)
     f = open(to, "wb")
     result = bytearray()
