@@ -1,6 +1,5 @@
 from PIL import Image
 import os
-from functools import reduce
 import argparse
 
 DELIMETER = "#|#|#|#"
