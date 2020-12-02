@@ -193,7 +193,7 @@ def reveal_from_album(password, fr, to):
     f.write(result)
 
 def main():
-    parser = argparse.ArgumentParser(description="lina")
+    parser = argparse.ArgumentParser(description="lina is a steganography program. It can hide a binary file or a text file into multiple png images. ")
     parser.add_argument("mode", help="hide or reveal")
     parser.add_argument("-p", "--password")
     parser.add_argument("-f", "--fr")
