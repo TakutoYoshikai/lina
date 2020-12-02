@@ -184,4 +184,3 @@ def reveral_from_album(password, fr, to):
     result = decrypt(result, password)
     f.write(result)
 
-hide_into_album("hw", "helloworld", "from", "to")
