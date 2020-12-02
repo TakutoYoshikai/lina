@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'Lina',
+    name = 'lina',
     version = '1.0.0',
     url = 'https://github.com/TakutoYoshikai/lina.git',
     license = 'MIT LICENSE',
