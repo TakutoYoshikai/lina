@@ -13,7 +13,7 @@ setup(
     package_dir={"":"lina"},
     entry_points={
         "console_scripts": [
-            "lina = lina.lina",
+            "lina = lina:main",
         ]
     }
 )
