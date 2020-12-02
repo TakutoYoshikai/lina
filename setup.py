@@ -11,4 +11,9 @@ setup(
     install_requires = ['setuptools', "pycrypto"],
     packages = find_packages(where="src"),
     package_dir={"":"src"},
+    entry_points={
+        "console_scripts": [
+            "lina = src.lina:main",
+        ]
+    }
 )
