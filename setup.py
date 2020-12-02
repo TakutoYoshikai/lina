@@ -9,8 +9,8 @@ setup(
     author_email = 'takuto.yoshikai@gmail.com',
     description = 'lina is a steganography program. It can hide a binary file or a text file into multiple png images.',
     install_requires = ['setuptools', "pycrypto"],
-    packages = find_packages(where="src"),
-    package_dir={"":"src"},
+    packages = find_packages(where="lina"),
+    package_dir={"":"lina"},
     entry_points={
         "console_scripts": [
             "lina = lina.lina:main",
