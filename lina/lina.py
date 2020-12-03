@@ -198,8 +198,8 @@ def main():
     parser = argparse.ArgumentParser(description="lina is a steganography program. It can hide a binary file or a text file into multiple png images. ")
     parser.add_argument("mode", help="hide or reveal")
     parser.add_argument("-p", "--password")
-    parser.add_argument("-i", "--i")
-    parser.add_argument("-o", "--o")
+    parser.add_argument("-i", "--i", help="input")
+    parser.add_argument("-o", "--o", help="output")
     parser.add_argument("-d", "--file")
     args = parser.parse_args()
     if args.mode == "hide":
