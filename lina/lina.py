@@ -201,17 +201,17 @@ def main():
     parser.add_argument("-i", "--in", help="input")
     parser.add_argument("-o", "--out", help="output")
     parser.add_argument("-d", "--file")
-    args = parser.parse_args()
+    args = vars(parser.parse_args())
     if args.mode == "hide":
-        if args.password == None or args.file == None or args["in"] == None or args.out == None:
+        if args["password"] == None or args["file"] == None or args["in"] == None or args["out"] == None:
             parser.print_help()
             return
-        hide_into_album(args.file, args.password, args["in"], args.out)
+        hide_into_album(args["file"], args["password"], args["in"], args["out"])
     elif args.mode == "reveal":
-        if args.password == None or args["in"] == None or args.out == None:
+        if args["password"] == None or args["in"] == None or args["out"] == None:
             parser.print_help()
             return
-        reveal_from_album(args.password, args["in"], args.out)
+        reveal_from_album(args["password"], args["in"], args["out"])
     else:
         parser.print_help()
     
