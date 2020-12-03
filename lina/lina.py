@@ -154,6 +154,9 @@ def encrypt(data, password):
     iv = Random.new().read(AES.block_size)
     return iv + create_aes(password, iv).encrypt(data)
 
+class SizeOverError(Exception):
+    pass
+
 def decrypt(data, password):
     iv, cipher = data[:AES.block_size], data[AES.block_size:]
     return create_aes(password, iv).decrypt(cipher)
@@ -167,7 +170,7 @@ def hide_into_album(filepath, password, fr, to):
     encrypted = encrypt(data, password)
     len_encrypted = len(encrypted)
     if capacity_of_images(images) < len_encrypted:
-        print("size over")
+        raise SizeOverError("size over")
         return
     remain = bytearray(encrypted)
     for image in images:
