@@ -184,11 +184,11 @@ def hide_into_album(filepath, password, fr, to):
         image.close()
     f.close()
 
-def reveal_from_album(password, fr, to):
+def reveal_from_album(password, fr, output_file):
     imagepaths = list_imagepath(fr)
     imagepaths.sort(reverse=True)
     images = list_images(imagepaths)
-    f = open(to, "wb")
+    f = open(output_file, "wb")
     result = bytearray()
     for image in images:
         result.extend(reveal(image))
