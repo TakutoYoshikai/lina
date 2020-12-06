@@ -95,7 +95,7 @@ def reveal(image):
                 
 def capacity_of_image(image):
     width, height = image.size
-    len_del = len(bytearray("#|#|#|#".encode()))
+    len_del = len(bytearray(DELIMETER.encode()))
     return (width * height * 3) // 8 - len_del
 
 def hide(image, data):
@@ -196,6 +196,7 @@ def reveal_from_album(password, fr, output_file):
     result = bytes(result)
     result = decrypt(result, password)
     f.write(result)
+    f.close()
 
 def main():
     parser = argparse.ArgumentParser(description="lina is a steganography program. It can hide a binary file or a text file into multiple png images. ")
