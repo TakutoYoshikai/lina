@@ -4,6 +4,9 @@ import argparse
 
 DELIMETER = "#|#|#|#"
 
+class SizeOverError(Exception):
+    pass
+
 def list_imagepath(dr):
     imagenames = list(filter(lambda x: x.endswith(".png"), os.listdir(dr)))
     imagepaths = []
@@ -108,7 +111,7 @@ def hide(image, data):
     delimeter = DELIMETER.encode()
     delimeter = bytearray(delimeter)
     if file_bytes + len(delimeter) > n_bytes:
-        raise ValueError("file size is too large")
+        raise SizeOverError("file size is too large")
     index = 0
     content = data
     content = bytearray(content)
@@ -154,8 +157,6 @@ def encrypt(data, password):
     iv = Random.new().read(AES.block_size)
     return iv + create_aes(password, iv).encrypt(data)
 
-class SizeOverError(Exception):
-    pass
 
 def decrypt(data, password):
     iv, cipher = data[:AES.block_size], data[AES.block_size:]
