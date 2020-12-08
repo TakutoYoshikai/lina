@@ -9,13 +9,24 @@ pip install git+https://github.com/TakutoYoshikai/lina.git
 ```
 
 **hide file into multiple png images**
+
+It needs them
+* a secret file to hide
+* a directory containing png image files
+* a directory(destination)
+
 ```bash
-lina hide -d <file> -p <password> -i <input IMAGE DIR> -o <output DIR>
+lina hide -d <SECRET FILE> -p <PASSWORD> -i <IMAGE DIR> -o <DESTINATION DIR>
 ```
 
 **reveal secret file from multiple png images**
+
+It needs them
+
+* a directory containing png image files having secret file.
+
 ```bash
-lina reveal -p <password> -i <input IMAGE DIR> -o <output FILENAME>
+lina reveal -p <PASSWORD> -i <input IMAGE DIR> -o <OUTPUT FILENAME>
 ```
 
 ### LICENSE
