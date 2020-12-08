@@ -8,7 +8,7 @@ class SizeOverError(Exception):
     pass
 
 def list_imagepath(dr):
-    imagenames = list(filter(lambda x: x.endswith(".png"), os.listdir(dr)))
+    imagenames = list(filter(lambda x: x.endswith(".png") or x.endswith(".jpg"), os.listdir(dr)))
     imagepaths = []
     for imagename in imagenames:
         imagepath = dr + "/" + imagename
