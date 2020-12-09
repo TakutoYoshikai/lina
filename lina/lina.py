@@ -2,7 +2,7 @@ from PIL import Image
 import os
 import argparse
 
-DELIMETER = "#|#|#|#"
+DELIMETER = "#|#|#|#|#|"
 
 class SizeOverError(Exception):
     pass
