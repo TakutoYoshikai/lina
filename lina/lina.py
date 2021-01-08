@@ -98,8 +98,7 @@ def reveal(image):
                 
 def capacity_of_image(image):
     width, height = image.size
-    len_del = len(bytearray(DELIMETER.encode()))
-    return (width * height * 3) // 8 - len_del
+    estimate_size(width * height, width * height * 3 // 8)
 
 def estimate_size(num_pixels, data_size):
     num_bits = data_size * 8
@@ -110,6 +109,7 @@ def estimate_size(num_pixels, data_size):
         num_bits -= 8
     return 0
 
+
 def hide(image, data):
     if image.mode not in ["RGB", "RGBA"]:
         image = image.convert("RGB")
@@ -117,14 +117,14 @@ def hide(image, data):
     width, height = image.size
     n_bytes = width * height * 3 // 8
     file_bytes = len(data)
-    delimeter = DELIMETER.encode()
-    delimeter = bytearray(delimeter)
-    if file_bytes + len(delimeter) > n_bytes:
+    size_to_hide = estimate_size(width * height, file_bytes)
+    if size_to_hide < file_bytes:
         raise SizeOverError("file size is too large")
     index = 0
-    content = data
+    content = str(size_to_hide) + ":"
+    content = content.encode("utf-8")
+    content = content + data
     content = bytearray(content)
-    content.extend(delimeter)
     binary_content = message_to_binary(content)
     binary = "".join(binary_content)
     len_binary = len(binary)
