@@ -78,34 +78,42 @@ def cut_bytes(data):
 def reveal(image):
     width, height = image.size
     binary = ""
-    delimeter = DELIMETER.encode()
-    delimeter = message_to_binary(delimeter)
-    delimeter = "".join(delimeter)
     buf = ""
+    bufs = []
+    b = 0
+    is_index_zone = True
+    file_size = None
     for row in range(height):
         for col in range(width):
             pixel = image.getpixel((col, row))
             if image.mode == "RGBA":
                 pixel = pixel[:3]
             for color in pixel:
-                if len(buf) == len(delimeter):
-                    buf = buf[1:len(delimeter)]
-                buf += str(getbit(color))
+                if is_index_zone:
+                    buf += str(getbit(color))
+                    if len(buf) == 8:
+                        if chr(int(buf, 2)) == ":":
+                            file_size = int("".join(bufs))
+                            is_index_zone = False
+                        bufs.append(chr(int(buf, 2)))
+                        buf = ""
+                    continue
+                if b >= file_size * 8:
+                    return split(binary)
                 binary += str(getbit(color))
-                if buf == delimeter:
-                    return cut_bytes(split(binary))
-    return cut_bytes(split(binary))
+                b += 1
+    return split(binary)
                 
 def capacity_of_image(image):
     width, height = image.size
-    estimate_size(width * height, width * height * 3 // 8)
+    return estimate_size(width * height, width * height * 3 // 8)
 
 def estimate_size(num_pixels, data_size):
     num_bits = data_size * 8
     capacity_bits = num_pixels * 3
     for _ in range(data_size):
         if capacity_bits >= len(str(num_bits) + ":") * 8 + num_bits:
-            return num_bits / 8
+            return num_bits // 8
         num_bits -= 8
     return 0
 
