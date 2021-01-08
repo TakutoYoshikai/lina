@@ -97,8 +97,8 @@ def reveal(image):
     return cut_bytes(split(binary))
                 
 def capacity_of_image(image):
-    width, height = image.size
-    estimate_size(width * height, width * height * 3 // 8)
+    len_del = len(bytearray(DELIMETER.encode()))
+    return (width * height * 3) // 8 - len_del
 
 def estimate_size(num_pixels, data_size):
     num_bits = data_size * 8
