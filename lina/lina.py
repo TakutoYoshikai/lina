@@ -101,6 +101,15 @@ def capacity_of_image(image):
     len_del = len(bytearray(DELIMETER.encode()))
     return (width * height * 3) // 8 - len_del
 
+def estimate_size(num_pixels, data_size):
+    num_bits = data_size * 8
+    capacity_bits = num_pixels * 3
+    for _ in range(data_size):
+        if capacity_bits >= len(str(num_bits) + ":") * 8 + num_bits:
+            return num_bits / 8
+        num_bits -= 8
+    return 0
+
 def hide(image, data):
     if image.mode not in ["RGB", "RGBA"]:
         image = image.convert("RGB")
