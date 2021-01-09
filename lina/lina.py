@@ -92,11 +92,14 @@ def reveal(image):
                 if is_index_zone:
                     buf += str(getbit(color))
                     if len(buf) == 8:
-                        if chr(int(buf, 2)) == ":":
-                            file_size = int("".join(bufs))
-                            is_index_zone = False
-                        bufs.append(chr(int(buf, 2)))
-                        buf = ""
+                        try:
+                            if chr(int(buf, 2)) == ":":
+                                file_size = int("".join(bufs))
+                                is_index_zone = False
+                            bufs.append(chr(int(buf, 2)))
+                            buf = ""
+                        except:
+                            return bytearray()
                     continue
                 if b >= file_size * 8:
                     return split(binary)
