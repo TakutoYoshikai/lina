@@ -14,10 +14,10 @@ These are required
 
 * a secret file to hide
 * a directory containing png image files
-* a directory(destination)
+* a empty directory for exporting
 
 ```bash
-lina hide -d <SECRET FILE> -p <PASSWORD> -i <IMAGE DIR> -o <DESTINATION DIR>
+lina hide -d <SECRET FILE> -p <PASSWORD> -i <IMAGE DIR> -o <DIR FOR EXPORTING>
 ```
 
 **reveal secret file from multiple png images**
@@ -27,7 +27,7 @@ These are required
 * a directory containing png image files having secret file.
 
 ```bash
-lina reveal -p <PASSWORD> -i <input IMAGE DIR> -o <OUTPUT FILENAME>
+lina reveal -p <PASSWORD> -i <IMAGE DIR> -o <OUTPUT FILENAME>
 ```
 
 ### LICENSE
